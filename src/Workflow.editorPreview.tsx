@@ -1,10 +1,10 @@
 import { parseStyle } from "./piw-utils-internal";
 import { createElement } from "react";
-import { GraphPreviewProps } from "../typings/GraphProps";
+import { WorkflowPreviewProps } from "../typings/WorkflowProps";
 
 declare function require(name: string): string;
 
-export function preview(props: GraphPreviewProps) {
+export function preview(props: WorkflowPreviewProps) {
     return <div style={parseStyle(props.style)}></div>;
 }
 
