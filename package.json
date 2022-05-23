@@ -6,6 +6,7 @@
   "packagePath": "mendixcn",
   "author": "wengao.liu@siemens.com",
   "dependencies": {
+    "react-flow-renderer": "^10.2.3",
     "ahooks": "^3.3.10",
     "classnames": "^2.2.6"
   },

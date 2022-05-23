@@ -1,12 +1,12 @@
 /**
- * This file was generated from Graph.xml
+ * This file was generated from Workflow.xml
  * WARNING: All changes made to this file will be overwritten
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
 import { EditableValue, ListValue, ListAttributeValue } from "mendix";
 
-export interface GraphContainerProps {
+export interface WorkflowContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
@@ -17,7 +17,7 @@ export interface GraphContainerProps {
     att2?: ListAttributeValue<string>;
 }
 
-export interface GraphPreviewProps {
+export interface WorkflowPreviewProps {
     className: string;
     style: string;
     styleObject?: CSSProperties;
