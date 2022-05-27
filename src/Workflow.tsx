@@ -20,6 +20,7 @@ const OverviewFlow = () => {
 
     return (
         <ReactFlow
+            style={{ height: 500 }}
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
