@@ -11,16 +11,20 @@ import ReactFlow, {
 
 import { nodes as initialNodes, edges as initialEdges } from './initial-elemen';
 
+import './ui/index.scss';
+import classNames from "classnames";
+
 const onInit = (reactFlowInstance: any) => console.log('flow loaded:', reactFlowInstance);
 
-const OverviewFlow = () => {
+export default function (props: WorkflowContainerProps) {
     const [nodes, _setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const onConnect = (params: any) => setEdges((eds) => addEdge(params, eds));
 
     return (
         <ReactFlow
-            style={{ height: 500 }}
+            style={props.style}
+            className={classNames("mxcn-react-flow", props.class)}
             nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
@@ -49,11 +53,5 @@ const OverviewFlow = () => {
             <Controls />
             <Background color="#aaa" gap={16} />
         </ReactFlow>
-    );
-};
-export default function (props: WorkflowContainerProps) {
-    console.log(props);
-    return (
-        <OverviewFlow />
     );
 }
