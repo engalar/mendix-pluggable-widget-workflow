@@ -6,5 +6,29 @@
     <description>My widget description</description>
     <icon/>
     <properties>
+        <propertyGroup caption="数据源">
+            <propertyGroup caption="活动">
+                <property key="activitys" type="datasource" required="true" isList="true">
+                    <caption>任务活动</caption>
+                    <description></description>
+                </property>
+                <property key="activityName" type="attribute" dataSource="activitys" required="true" isPath="no">
+                    <caption>名称</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <!-- <propertyGroup caption="关联">
+                <property key="taskDefinitionAssociation" type="association" selectableObjects="activitys">
+                    <caption>任务定义</caption>
+                    <description></description>
+                    <associationTypes>
+                        <associationType name="ReferenceSet" />
+                    </associationTypes>
+                </property>
+            </propertyGroup> -->
+        </propertyGroup>
     </properties>
 </widget>

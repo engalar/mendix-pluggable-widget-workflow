@@ -6,6 +6,17 @@
 			"type": "shell",
 			"command": "C:/\"Program Files\"/Mendix/9.6.0.27784/modeler/mxbuild.exe --java-home=\"%JAVA_HOME%\" --java-exe-path=\"%JAVA_HOME%/bin/java.exe\" --target=deploy --loose-version-check \"${workspaceFolder}/tests/testProject/testProject.mpr\"",
 			"problemMatcher": [],
+			// "group": {
+			// 	"kind": "build",
+			// 	"isDefault": true
+			// }
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "pluggable-widgets-tools build:web",
 			"group": {
 				"kind": "build",
 				"isDefault": true

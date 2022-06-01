@@ -4,13 +4,15 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
+import { ListValue, ListAttributeValue } from "mendix";
 
 export interface WorkflowContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-
+    activitys: ListValue;
+    activityName: ListAttributeValue<string>;
 }
 
 export interface WorkflowPreviewProps {
@@ -18,5 +20,6 @@ export interface WorkflowPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-
+    activitys: {} | { type: string } | null;
+    activityName: string;
 }

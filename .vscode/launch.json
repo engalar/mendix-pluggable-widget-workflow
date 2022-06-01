@@ -1,6 +1,19 @@
 {
   "configurations": [
     {
+      "name": "npm build",
+      "request": "launch",
+      "runtimeArgs": [
+        "run-script",
+        "build"
+      ],
+      "runtimeExecutable": "npm",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
       "type": "java",
       "name": "Launch Mendix Program",
       "request": "launch",
