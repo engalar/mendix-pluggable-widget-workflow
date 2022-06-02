@@ -5,7 +5,8 @@
       "request": "launch",
       "runtimeArgs": [
         "run-script",
-        "build"
+        "build",
+        "> ${workspaceFolder}/tests/npm_build.ans 2>&1"
       ],
       "runtimeExecutable": "npm",
       "skipFiles": [
