@@ -4,6 +4,8 @@ import alias from "@rollup/plugin-alias";
 import { findIndex } from 'lodash';
 import { join } from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
+import * as path from 'path';
+import pluginutils from '@rollup/pluginutils';
 
 function replacePlugin(config, name, plugin) {
   if (typeof name == 'string') {
@@ -15,7 +17,13 @@ function replacePlugin(config, name, plugin) {
   }
 
 }
-
+function getName(id) {
+  const name = pluginutils.makeLegalIdentifier(path.basename(id, path.extname(id)));
+  if (name !== 'index') {
+    return name;
+  }
+  return pluginutils.makeLegalIdentifier(path.basename(path.dirname(id)));
+}
 export default args => {
   const result = args.configDefaultConfig;
   const [jsConfig, mJsConfig] = result;
@@ -85,6 +93,38 @@ export default args => {
     replacePlugin(config, 6, newAlias);
     replacePlugin(config, 7, newNodeResolve);
     replacePlugin(config, 10, newCommonjs);
+
+    config.plugins.push({
+      name: 'hardcode',
+      options(rawOptions) {
+        // We inject the resolver in the beginning so that "catch-all-resolver" like node-resolver
+        // do not prevent our plugin from resolving entry points ot proxies.
+        const plugins = Array.isArray(rawOptions.plugins)
+          ? [...rawOptions.plugins]
+          : rawOptions.plugins
+            ? [rawOptions.plugins]
+            : [];
+        plugins.unshift({
+          name: 'hardcode-child',
+          load(id) {
+            if (id.startsWith('\0') && id.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js?hardcode')) {
+              const name = getName(id);
+              const result = `import * as ${name} from ${JSON.stringify(`\0${id.slice(1).replace('?hardcode', '')}?commonjs-module`)}; export default {default: /*lwg666*/${name}};`;
+              console.log('my load', result);
+              return result;
+            }
+            return null;
+          },
+          async resolveId(importee, importer, resolveOptions) {
+            if (importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js')) {
+              return `\0${importee}?hardcode`
+            } else { return null }
+          }
+
+        });
+        return { ...rawOptions, plugins };
+      },
+    })
 
 
     const onwarn = config.onwarn;
