@@ -109,16 +109,18 @@ export default args => {
           load(id) {
             if (id.endsWith(`hardcode-child`)) {
               const name = getName(id);
-              const result = `import * as ${name} from ${JSON.stringify(`${id.slice(0, -15)}?commonjs-proxy`)}; export default {default: /*lwg666*/${name}};`;
+              const result = `import * as ${name} from ${JSON.stringify(`${id.slice(1, -15 * 2)}`)}; export default {default: /*lwg666*/${name}};`;
               return result;
             }
             return null;
           },
           async resolveId(importee, importer, resolveOptions) {
             if (importer && importer.endsWith('node_modules\\@projectstorm\\react-diagrams-core\\dist\\entities\\node\\NodeWidget.js')
-              && importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js')) {
-              return `\0 ${importee}?hardcode-child`;
+              && importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js?commonjs-proxy')) {
+              console.log(`${importee}?hardcode-child`);
+              return `${importee}?hardcode-child`;
             }
+            console.log('skip', importee, importer);
             return null;
           }
         });
