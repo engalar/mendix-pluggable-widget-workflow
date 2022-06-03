@@ -1,4 +1,4 @@
-import { BodyWidget } from './components/BodyWidget';
+import { BodyWidget } from './BodyWidget';
 import { Application } from './Application';
 import { createElement } from 'react';
 

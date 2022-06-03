@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import keys from 'lodash-es/keys';
 import { TrayWidget } from './TrayWidget';
 import { Application } from './Application';
 import { TrayItemWidget } from './TrayItemWidget';
@@ -57,7 +57,7 @@ export class BodyWidget extends Component<BodyWidgetProps> {
 					<S.Layer
 						onDrop={(event) => {
 							var data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
-							var nodesCount = _.keys(this.props.app.getDiagramEngine().getModel().getNodes()).length;
+							var nodesCount = keys(this.props.app.getDiagramEngine().getModel().getNodes()).length;
 
 							var node: DefaultNodeModel;
 							if (data.type === 'in') {
