@@ -61,7 +61,7 @@ export default args => {
       //patch
       exclude: [
         /.*\.esm\.js/gm,
-        /.*\.es\.js/gm,
+        // /.*\.es\.js/gm,
         // /node_modules\/resize-observer-polyfill\/src\/index.js/gm,
         // /node_modules\/@projectstorm\/react-diagrams-core\/dist\/entities\/node\/NodeWidget.js/gm,
       ],
@@ -107,20 +107,20 @@ export default args => {
         plugins.unshift({
           name: 'hardcode-child',
           load(id) {
-            if (id.startsWith('\0') && id.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js?hardcode')) {
+            if (id.endsWith(`hardcode-child`)) {
               const name = getName(id);
-              const result = `import * as ${name} from ${JSON.stringify(`\0${id.slice(1).replace('?hardcode', '')}?commonjs-module`)}; export default {default: /*lwg666*/${name}};`;
-              console.log('my load', result);
+              const result = `import * as ${name} from ${JSON.stringify(`${id.slice(0, -15)}?commonjs-proxy`)}; export default {default: /*lwg666*/${name}};`;
               return result;
             }
             return null;
           },
           async resolveId(importee, importer, resolveOptions) {
-            if (importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js')) {
-              return `\0${importee}?hardcode`
-            } else { return null }
+            if (importer && importer.endsWith('node_modules\\@projectstorm\\react-diagrams-core\\dist\\entities\\node\\NodeWidget.js')
+              && importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js')) {
+              return `\0 ${importee}?hardcode-child`;
+            }
+            return null;
           }
-
         });
         return { ...rawOptions, plugins };
       },
