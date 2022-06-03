@@ -109,7 +109,7 @@ export default args => {
           load(id) {
             if (id.endsWith(`hardcode-child`)) {
               const name = getName(id);
-              const result = `import * as ${name} from ${JSON.stringify(`${id.slice(1, -15 * 2)}`)}; export default {default: /*lwg666*/${name}};`;
+              const result = `import * as ${name} from ${JSON.stringify(`${id.slice(1, -15 * 2)}`)}; export default ${name};`;
               return result;
             }
             return null;
