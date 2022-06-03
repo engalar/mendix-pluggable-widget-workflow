@@ -1,7 +1,6 @@
 import { normalize } from 'path';
 import commonjs from '@rollup/plugin-commonjs';
 import alias from "@rollup/plugin-alias";
-import { findIndex } from 'lodash';
 import { join } from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import * as path from 'path';
@@ -35,9 +34,6 @@ export default args => {
         "@emotion/utils": join(__dirname, "node_modules/@emotion/utils/dist/emotion-utils.esm.js"),
         "@emotion/serialize": join(__dirname, "node_modules/@emotion/serialize/dist/emotion-serialize.esm.js"),
         "@emotion/styled": join(__dirname, "node_modules/@emotion/styled/dist/emotion-styled.cjs.js"),
-        // "resize-observer-polyfill": join(__dirname, "node_modules/resize-observer-polyfill/src/index.js"),
-        // "@projectstorm/react-diagrams": join(__dirname, "node_modules/@projectstorm/react-diagrams/dist/index.umd.js"),
-        // "@projectstorm/react-diagrams-core": join(__dirname, "node_modules/@projectstorm/react-diagrams-core/src/index.ts"),
       }
     });
 
@@ -117,10 +113,8 @@ export default args => {
           async resolveId(importee, importer, resolveOptions) {
             if (importer && importer.endsWith('node_modules\\@projectstorm\\react-diagrams-core\\dist\\entities\\node\\NodeWidget.js')
               && importee.endsWith('node_modules\\resize-observer-polyfill\\dist\\ResizeObserver.es.js?commonjs-proxy')) {
-              console.log(`${importee}?hardcode-child`);
               return `${importee}?hardcode-child`;
             }
-            console.log('skip', importee, importer);
             return null;
           }
         });

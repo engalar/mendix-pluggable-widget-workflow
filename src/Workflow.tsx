@@ -4,7 +4,7 @@ import { WorkflowContainerProps } from "../typings/WorkflowProps";
 
 import './ui/index.scss';
 import classNames from "classnames";
-import App from "./components/App";
+import App from "./components/demo-drag-and-drop/App";
 
 
 export default function (props: WorkflowContainerProps) {
