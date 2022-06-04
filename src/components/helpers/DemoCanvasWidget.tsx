@@ -1,4 +1,4 @@
-import { Component, createElement, Fragment } from "react";
+import { createElement, FC, Fragment } from "react";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
 
@@ -53,18 +53,16 @@ export const Expand = css`
     }
 `;
 
-export class DemoCanvasWidget extends Component<DemoCanvasWidgetProps> {
-    render() {
-        return (
-            <Fragment>
-                <Global styles={Expand} />
-                <Container
-                    background={this.props.background || "rgb(60, 60, 60)"}
-                    color={this.props.color || "rgba(255,255,255, 0.05)"}
-                >
-                    {this.props.children}
-                </Container>
-            </Fragment>
-        );
-    }
+export const DemoCanvasWidget: FC<DemoCanvasWidgetProps> = props => {
+    return (
+        <Fragment>
+            <Global styles={Expand} />
+            <Container
+                background={props.background || "rgb(60, 60, 60)"}
+                color={props.color || "rgba(255,255,255, 0.05)"}
+            >
+                {props.children}
+            </Container>
+        </Fragment>
+    );
 }

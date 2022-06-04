@@ -1,4 +1,4 @@
-import { Component, createElement } from "react";
+import { createElement, FC } from "react";
 import styled from "@emotion/styled";
 
 export const Tray = styled.div`
@@ -8,8 +8,8 @@ export const Tray = styled.div`
     flex-shrink: 0;
 `;
 
-export class TrayWidget extends Component {
-    render() {
-        return <Tray>{this.props.children}</Tray>;
-    }
+export const TrayWidget: FC = props => {
+    return (
+        <Tray>{props.children}</Tray>
+    )
 }

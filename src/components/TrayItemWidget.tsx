@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Component, createElement } from "react";
+import { createElement, FC } from "react";
 
 export interface TrayItemWidgetProps {
     model: any;
@@ -18,19 +18,18 @@ export const Tray = styled.div<{ color: string }>`
     cursor: pointer;
 `;
 
-export class TrayItemWidget extends Component<TrayItemWidgetProps> {
-    render() {
-        return (
-            <Tray
-                color={this.props.color}
-                draggable
-                onDragStart={event => {
-                    event.dataTransfer.setData("storm-diagram-node", JSON.stringify(this.props.model));
-                }}
-                className="tray-item"
-            >
-                {this.props.name}
-            </Tray>
-        );
-    }
+export const TrayItemWidget: FC<TrayItemWidgetProps> = props => {
+    return (
+        <Tray
+            color={props.color}
+            draggable
+            onDragStart={event => {
+                event.dataTransfer.setData("storm-diagram-node", JSON.stringify(props.model));
+            }}
+            className="tray-item"
+        >
+            {props.name}
+        </Tray>
+    );
 }
+
