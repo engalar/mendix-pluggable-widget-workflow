@@ -1,24 +1,24 @@
-import * as SRD from "@projectstorm/react-diagrams";
+import SRD, { DefaultNodeModel, DiagramEngine, DiagramModel } from "@projectstorm/react-diagrams";
 
 /**
  * @author Dylan Vorster
  */
 export class Application {
-    protected activeModel: SRD.DiagramModel;
-    protected diagramEngine: SRD.DiagramEngine;
+    protected activeModel: DiagramModel;
+    protected diagramEngine: DiagramEngine;
 
     constructor() {
-        this.diagramEngine = SRD.default();
-        this.activeModel = new SRD.DiagramModel();
+        this.diagramEngine = SRD();
+        this.activeModel = new DiagramModel();
         this.diagramEngine.setModel(this.activeModel);
 
         // 3-A) create a default node
-        const node1 = new SRD.DefaultNodeModel("Node 1", "rgb(0,192,255)");
+        const node1 = new DefaultNodeModel("Node 1", "rgb(0,192,255)");
         const port = node1.addOutPort("Out");
         node1.setPosition(100, 100);
 
         // 3-B) create another default node
-        const node2 = new SRD.DefaultNodeModel("Node 2", "rgb(192,255,0)");
+        const node2 = new DefaultNodeModel("Node 2", "rgb(192,255,0)");
         const port2 = node2.addInPort("In");
         node2.setPosition(400, 100);
 
@@ -28,11 +28,11 @@ export class Application {
         this.activeModel.addAll(node1, node2, link1);
     }
 
-    getActiveDiagram(): SRD.DiagramModel {
+    getActiveDiagram(): DiagramModel {
         return this.activeModel;
     }
 
-    getDiagramEngine(): SRD.DiagramEngine {
+    getDiagramEngine(): DiagramEngine {
         return this.diagramEngine;
     }
 }

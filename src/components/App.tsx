@@ -1,8 +1,8 @@
 import { BodyWidget } from "./BodyWidget";
 import { Application } from "./Application";
-import { createElement } from "react";
+import { createElement, useMemo } from "react";
 
 export default () => {
-    const app = new Application();
+    const app = useMemo(() => new Application(), []);
     return <BodyWidget app={app} />;
 };
