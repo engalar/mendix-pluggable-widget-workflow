@@ -9,7 +9,6 @@ import keys from "lodash-es/keys";
 import { TrayWidget } from "./TrayWidget";
 import { Application } from "./Application";
 import { TrayItemWidget } from "./TrayItemWidget";
-import { DemoCanvasWidget } from "./helpers/DemoCanvasWidget";
 import { useUpdate } from "ahooks";
 
 export interface BodyWidgetProps {
@@ -43,7 +42,43 @@ export const Layer = styled.div`
     position: relative;
     flex-grow: 1;
 `;
+export const Container = styled.div<{ color: string; background: string }>`
+    height: 100%;
+    background-color: ${p => p.background};
+    background-size: 50px 50px;
+    display: flex;
 
+    > * {
+        height: 100%;
+        min-height: 100%;
+        width: 100%;
+    }
+
+    background-image: linear-gradient(
+            0deg,
+            transparent 24%,
+            ${p => p.color} 25%,
+            ${p => p.color} 26%,
+            transparent 27%,
+            transparent 74%,
+            ${p => p.color} 75%,
+            ${p => p.color} 76%,
+            transparent 77%,
+            transparent
+        ),
+        linear-gradient(
+            90deg,
+            transparent 24%,
+            ${p => p.color} 25%,
+            ${p => p.color} 26%,
+            transparent 27%,
+            transparent 74%,
+            ${p => p.color} 75%,
+            ${p => p.color} 76%,
+            transparent 77%,
+            transparent
+        );
+`;
 export const BodyWidget: FC<BodyWidgetProps> = props => {
     const forceUpdate = useUpdate();
     return (
@@ -77,10 +112,17 @@ export const BodyWidget: FC<BodyWidgetProps> = props => {
                     onDragOver={event => {
                         event.preventDefault();
                     }}
+                    /* onMouseMove={(event) => {
+                        props.app.getDiagramEngine().getActionEventBus().fireAction({ event });
+                        event.preventDefault();
+                    }} */
                 >
-                    <DemoCanvasWidget>
+                    <Container
+                        background={"rgb(60, 60, 60)"}
+                        color={"rgba(255,255,255, 0.05)"}
+                    >
                         <CanvasWidget engine={props.app.getDiagramEngine()} />
-                    </DemoCanvasWidget>
+                    </Container>
                 </Layer>
             </Content>
         </Body>

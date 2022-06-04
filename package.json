@@ -11,10 +11,13 @@
     "@projectstorm/react-diagrams": "^6.7.0",
     "ahooks": "^3.3.10",
     "classnames": "^2.2.6",
+    "closest": "0.0.1",
     "dagre": "^0.8.5",
+    "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "pathfinding": "^0.4.18",
-    "paths-js": "^0.4.11"
+    "paths-js": "^0.4.11",
+    "resize-observer-polyfill": "^1.5.1"
   },
   "scripts": {
     "testProject": "git clone https://gitee.com/engalar/mendix-testproject-960.git --depth=1 ./tests/testProject && shx rm -rf .\\tests\\testProject\\.git",
