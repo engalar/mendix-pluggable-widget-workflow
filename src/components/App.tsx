@@ -1,8 +1,8 @@
-import { BodyWidget } from './BodyWidget';
-import { Application } from './Application';
-import { createElement } from 'react';
+import { BodyWidget } from "./BodyWidget";
+import { Application } from "./Application";
+import { createElement } from "react";
 
 export default () => {
-	var app = new Application();
-	return <BodyWidget app={app} />;
+    const app = new Application();
+    return <BodyWidget app={app} />;
 };
