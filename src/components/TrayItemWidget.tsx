@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { createElement, FC } from "react";
+import { FC } from "react";
 
 export interface TrayItemWidgetProps {
     model: any;

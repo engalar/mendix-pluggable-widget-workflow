@@ -1,4 +1,3 @@
-import { createElement } from "react";
 import { WorkflowContainerProps } from "../typings/WorkflowProps";
 
 import "./ui/index.scss";

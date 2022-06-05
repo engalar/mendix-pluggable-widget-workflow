@@ -5,6 +5,7 @@ import { join } from "path";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import * as path from 'path';
 import pluginutils from '@rollup/pluginutils';
+import { getBabelInputPlugin } from "@rollup/plugin-babel";
 
 function replacePlugin(config, name, plugin) {
   if (typeof name == 'string') {
@@ -24,6 +25,7 @@ function getName(id) {
   return pluginutils.makeLegalIdentifier(path.basename(path.dirname(id)));
 }
 export default args => {
+  const production = Boolean(args.configProduction);
   const result = args.configDefaultConfig;
   const [jsConfig, mJsConfig] = result;
   [jsConfig, mJsConfig].forEach(config => {
@@ -68,6 +70,28 @@ export default args => {
       // defaultIsModuleExports: true,
     });
 
+    //https://zh-hans.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#manual-babel-setup
+    const newBabelPlugin = getBabelInputPlugin({
+      sourceMaps: !production,
+      babelrc: false,
+      babelHelpers: "bundled",
+      plugins: ["@babel/plugin-proposal-class-properties"],
+      overrides: [
+        {
+          test: /node_modules/,
+          plugins: ["@babel/plugin-transform-flow-strip-types", "@babel/plugin-transform-react-jsx"]
+        },
+        {
+          exclude: /node_modules/,
+          "plugins": [
+            ["@babel/plugin-transform-react-jsx", {
+              "runtime": "automatic"
+            }]
+          ]
+        }
+      ]
+    });
+
     /*
     widget-typing
     clear
@@ -88,6 +112,7 @@ export default args => {
     command */
     replacePlugin(config, 6, newAlias);
     replacePlugin(config, 7, newNodeResolve);
+    replacePlugin(config, 9, newBabelPlugin);
     replacePlugin(config, 10, newCommonjs);
 
     config.plugins.push({

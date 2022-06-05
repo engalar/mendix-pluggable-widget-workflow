@@ -1,4 +1,4 @@
-import { createElement, FC } from "react";
+import { FC } from "react";
 
 import styled from "@emotion/styled";
 import { CanvasWidget } from "@projectstorm/react-canvas-core";
