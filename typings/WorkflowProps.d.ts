@@ -5,6 +5,7 @@
  */
 import { CSSProperties } from "react";
 import { ListValue, ListAttributeValue } from "mendix";
+import { Big } from "big.js";
 
 export interface WorkflowContainerProps {
     name: string;
@@ -12,7 +13,17 @@ export interface WorkflowContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     activitys: ListValue;
-    activityName: ListAttributeValue<string>;
+    activityOutcome: ListAttributeValue<string>;
+    activityKey: ListAttributeValue<string>;
+    schemaNodes: ListValue;
+    schemaNodeName: ListAttributeValue<string>;
+    schemaNodeKey: ListAttributeValue<string>;
+    schemaNodeX: ListAttributeValue<Big>;
+    schemaNodeY: ListAttributeValue<Big>;
+    outcomes: ListValue;
+    outcomeName: ListAttributeValue<string>;
+    outcomeFrom: ListAttributeValue<string>;
+    outcomeTo: ListAttributeValue<string>;
 }
 
 export interface WorkflowPreviewProps {
@@ -21,5 +32,15 @@ export interface WorkflowPreviewProps {
     styleObject?: CSSProperties;
     readOnly: boolean;
     activitys: {} | { type: string } | null;
-    activityName: string;
+    activityOutcome: string;
+    activityKey: string;
+    schemaNodes: {} | { type: string } | null;
+    schemaNodeName: string;
+    schemaNodeKey: string;
+    schemaNodeX: string;
+    schemaNodeY: string;
+    outcomes: {} | { type: string } | null;
+    outcomeName: string;
+    outcomeFrom: string;
+    outcomeTo: string;
 }
