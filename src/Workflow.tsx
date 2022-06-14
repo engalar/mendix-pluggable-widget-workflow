@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { useEffect, useMemo, useState } from "react";
 import { UserTaskNode } from "./models/UserTaskNode";
 import { Application } from "./components/Application";
-import { BodyWidget } from "./components/BodyWidget";
+import { CanvasWidget } from "@projectstorm/react-canvas-core";
 import { UserTaskEdge } from "./models/UserTaskEdge";
 
 export default function (props: WorkflowContainerProps) {
@@ -39,12 +39,12 @@ export default function (props: WorkflowContainerProps) {
         }
     }, [props.schemaNodes, props.schemaNodeKey, props.schemaNodeName, props.schemaNodeX, props.schemaNodeY])
 
-    console.log(taskNodeList,taskEdgeList);
-    
+    console.log(taskNodeList, taskEdgeList);
+
 
     return (
         <div style={props.style} className={classNames("mxcn-react-flow", props.class)}>
-            <BodyWidget app={app} />
+            <CanvasWidget engine={app.getDiagramEngine()} />
         </div>
     );
 }
