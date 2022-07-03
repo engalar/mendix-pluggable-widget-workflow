@@ -9,26 +9,37 @@
         <propertyGroup caption="数据源">
             <propertyGroup caption="活动">
                 <property key="activitys" type="datasource" required="true" isList="true">
-                    <caption>任务活动</caption>
+                    <caption>活动</caption>
                     <description></description>
                 </property>
                 <property key="activityName" type="attribute" dataSource="activitys" required="true" isPath="no">
-                    <caption>名称</caption>
+                    <caption>活动名</caption>
                     <description></description>
                     <attributeTypes>
                         <attributeType name="String" />
                     </attributeTypes>
                 </property>
-            </propertyGroup>
-            <!-- <propertyGroup caption="关联">
-                <property key="taskDefinitionAssociation" type="association" selectableObjects="activitys">
-                    <caption>任务定义</caption>
+                <property key="activityX" type="attribute" dataSource="activitys" required="true" isPath="no">
+                    <caption>X</caption>
                     <description></description>
-                    <associationTypes>
-                        <associationType name="ReferenceSet" />
-                    </associationTypes>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
                 </property>
-            </propertyGroup> -->
+                <property key="activityY" type="attribute" dataSource="activitys" required="true" isPath="no">
+                    <caption>Y</caption>
+                    <description></description>
+                    <attributeTypes>
+                        <attributeType name="Decimal" />
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="背景">
+                <property key="attImage" type="image">
+                    <caption>背景图片</caption>
+                    <description></description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
     </properties>
 </widget>
