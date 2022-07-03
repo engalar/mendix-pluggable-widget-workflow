@@ -1,12 +1,10 @@
-import { NodeModel, NodeModelGenerics } from '@projectstorm/react-diagrams';
+import { NodeModel, NodeModelGenerics } from "@projectstorm/react-diagrams";
 
-export interface DiamondNodeModelGenerics {
-}
 
-export class DiamondNodeModel extends NodeModel<NodeModelGenerics & DiamondNodeModelGenerics> {
-	constructor() {
-		super({
-			type: 'diamond'
-		});
-	}
+export class DiamondNodeModel extends NodeModel<NodeModelGenerics> {
+    constructor(public backGroupImage: string) {
+        super({
+            type: "diamond"
+        });
+    }
 }

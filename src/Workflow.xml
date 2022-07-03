@@ -9,85 +9,35 @@
         <propertyGroup caption="数据源">
             <propertyGroup caption="活动">
                 <property key="activitys" type="datasource" required="true" isList="true">
-                    <caption>任务活动</caption>
+                    <caption>活动</caption>
                     <description></description>
                 </property>
-                <property key="activityOutcome" type="attribute" dataSource="activitys" required="true" isPath="no">
-                    <caption>Outcome</caption>
-                    <description></description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
-                </property>
-                <property key="activityKey" type="attribute" dataSource="activitys" required="true" isPath="no">
-                    <caption>标识</caption>
-                    <description>可以狭义理解为指示本UserTask属于哪一个UserTaskDefinition</description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
-                </property>
-            </propertyGroup>
-        </propertyGroup>
-        <propertyGroup caption="流程图">
-            <propertyGroup caption="结点">
-                <property key="schemaNodes" type="datasource" required="true" isList="true">
-                    <caption>流程图节点</caption>
-                    <description></description>
-                </property>
-                <property key="schemaNodeName" type="attribute" dataSource="schemaNodes" required="true" isPath="no">
-                    <caption>名称</caption>
+                <property key="activityName" type="attribute" dataSource="activitys" required="true" isPath="no">
+                    <caption>活动名</caption>
                     <description></description>
                     <attributeTypes>
                         <attributeType name="String" />
                     </attributeTypes>
                 </property>
-                <property key="schemaNodeKey" type="attribute" dataSource="schemaNodes" required="true" isPath="no">
-                    <caption>标识</caption>
-                    <description>可以狭义理解为指示本UserTask属于哪一个UserTaskDefinition</description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
-                </property>
-                <property key="schemaNodeX" type="attribute" dataSource="schemaNodes" required="true" isPath="no">
+                <property key="activityX" type="attribute" dataSource="activitys" required="true" isPath="no">
                     <caption>X</caption>
-                    <description>水平坐标</description>
+                    <description></description>
                     <attributeTypes>
-                        <attributeType name="Long" />
+                        <attributeType name="Decimal" />
                     </attributeTypes>
                 </property>
-                <property key="schemaNodeY" type="attribute" dataSource="schemaNodes" required="true" isPath="no">
+                <property key="activityY" type="attribute" dataSource="activitys" required="true" isPath="no">
                     <caption>Y</caption>
-                    <description>垂直坐标</description>
+                    <description></description>
                     <attributeTypes>
-                        <attributeType name="Long" />
+                        <attributeType name="Decimal" />
                     </attributeTypes>
                 </property>
             </propertyGroup>
-            <propertyGroup caption="Outcome映射关系">
-                <property key="outcomes" type="datasource" required="true" isList="true">
-                    <caption>任务活动</caption>
+            <propertyGroup caption="背景">
+                <property key="attImage" type="image">
+                    <caption>背景图片</caption>
                     <description></description>
-                </property>
-                <property key="outcomeName" type="attribute" dataSource="outcomes" required="true" isPath="no">
-                    <caption>Outcome名称</caption>
-                    <description></description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
-                </property>
-                <property key="outcomeFrom" type="attribute" dataSource="outcomes" required="true" isPath="no">
-                    <caption>开始标识</caption>
-                    <description></description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
-                </property>
-                <property key="outcomeTo" type="attribute" dataSource="outcomes" required="true" isPath="no">
-                    <caption>结束标识</caption>
-                    <description></description>
-                    <attributeTypes>
-                        <attributeType name="String" />
-                    </attributeTypes>
                 </property>
             </propertyGroup>
         </propertyGroup>

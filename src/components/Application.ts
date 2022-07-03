@@ -1,6 +1,5 @@
-import SRD, { DefaultNodeModel, DiagramEngine, DiagramModel } from "@projectstorm/react-diagrams";
+import SRD, { DiagramEngine, DiagramModel } from "@projectstorm/react-diagrams";
 import { DiamondNodeFactory } from "./custom/DiamondNodeFactory";
-import { DiamondNodeModel } from "./custom/DiamondNodeModel";
 import { AdvancedLinkFactory } from "./Demo";
 
 /**
@@ -16,16 +15,6 @@ export class Application {
         this.engine.getNodeFactories().registerFactory(new DiamondNodeFactory());
         this.activeModel = new DiagramModel();
         this.engine.setModel(this.activeModel);
-
-        var nodeBG = new DiamondNodeModel();
-        nodeBG.setPosition(250, 108);
-
-        var node = new DefaultNodeModel("Target", "rgb(192,255,0)");
-
-        var model = this.activeModel;
-
-        // add everything else
-        model.addAll(nodeBG, node);
     }
 
     getActiveDiagram(): DiagramModel {

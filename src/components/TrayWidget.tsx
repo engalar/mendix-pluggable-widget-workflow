@@ -9,7 +9,5 @@ export const Tray = styled.div`
 `;
 
 export const TrayWidget: FC = props => {
-    return (
-        <Tray>{props.children}</Tray>
-    )
-}
+    return <Tray>{props.children}</Tray>;
+};

@@ -31,5 +31,4 @@ export const TrayItemWidget: FC<TrayItemWidgetProps> = props => {
             {props.name}
         </Tray>
     );
-}
-
+};

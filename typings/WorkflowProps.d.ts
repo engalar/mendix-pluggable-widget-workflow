@@ -4,7 +4,7 @@
  * @author Mendix UI Content Team
  */
 import { CSSProperties } from "react";
-import { ListValue, ListAttributeValue } from "mendix";
+import { DynamicValue, ListValue, ListAttributeValue, WebImage } from "mendix";
 import { Big } from "big.js";
 
 export interface WorkflowContainerProps {
@@ -13,17 +13,10 @@ export interface WorkflowContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     activitys: ListValue;
-    activityOutcome: ListAttributeValue<string>;
-    activityKey: ListAttributeValue<string>;
-    schemaNodes: ListValue;
-    schemaNodeName: ListAttributeValue<string>;
-    schemaNodeKey: ListAttributeValue<string>;
-    schemaNodeX: ListAttributeValue<Big>;
-    schemaNodeY: ListAttributeValue<Big>;
-    outcomes: ListValue;
-    outcomeName: ListAttributeValue<string>;
-    outcomeFrom: ListAttributeValue<string>;
-    outcomeTo: ListAttributeValue<string>;
+    activityName: ListAttributeValue<string>;
+    activityX: ListAttributeValue<Big>;
+    activityY: ListAttributeValue<Big>;
+    attImage: DynamicValue<WebImage>;
 }
 
 export interface WorkflowPreviewProps {
@@ -32,15 +25,8 @@ export interface WorkflowPreviewProps {
     styleObject?: CSSProperties;
     readOnly: boolean;
     activitys: {} | { type: string } | null;
-    activityOutcome: string;
-    activityKey: string;
-    schemaNodes: {} | { type: string } | null;
-    schemaNodeName: string;
-    schemaNodeKey: string;
-    schemaNodeX: string;
-    schemaNodeY: string;
-    outcomes: {} | { type: string } | null;
-    outcomeName: string;
-    outcomeFrom: string;
-    outcomeTo: string;
+    activityName: string;
+    activityX: string;
+    activityY: string;
+    attImage: { type: "static"; imageUrl: string } | { type: "dynamic"; entity: string } | null;
 }

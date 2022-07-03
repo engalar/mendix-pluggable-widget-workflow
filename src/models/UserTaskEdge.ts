@@ -1,6 +1,5 @@
-
 export interface UserTaskEdge {
-  Name: string;
-  From: string;
-  To: string;
+    Name: string;
+    From: string;
+    To: string;
 }

@@ -1,5 +1,5 @@
 import { WorkflowContainerProps } from "../typings/WorkflowProps";
-import { ValueStatus } from 'mendix'
+import { ValueStatus } from "mendix";
 
 import "./ui/index.scss";
 import classNames from "classnames";
@@ -7,40 +7,44 @@ import { useEffect, useMemo, useState } from "react";
 import { UserTaskNode } from "./models/UserTaskNode";
 import { Application } from "./components/Application";
 import { CanvasWidget } from "@projectstorm/react-canvas-core";
-import { UserTaskEdge } from "./models/UserTaskEdge";
+import { DiamondNodeModel } from "./components/custom/DiamondNodeModel";
+import { DefaultNodeModel, DiagramModel } from "@projectstorm/react-diagrams";
 
 export default function (props: WorkflowContainerProps) {
     const app = useMemo(() => new Application(), []);
     const [taskNodeList, setTaskNodeList] = useState<UserTaskNode[]>([]);
-    const [taskEdgeList, setTaskEdgeList] = useState<UserTaskEdge[]>([]);
 
     useEffect(() => {
-        if (props.outcomes.status === ValueStatus.Available) {
-            setTaskEdgeList(props.outcomes.items!.map(d => ({
-                Name: props.outcomeName.get(d).value!,
-                From: props.outcomeFrom.get(d).value!,
-                To: props.outcomeTo.get(d).value!,
-            })))
+        if (props.activitys.status === ValueStatus.Available) {
+            setTaskNodeList(
+                props.activitys.items!.map<UserTaskNode>(d => ({
+                    Name: props.activityName.get(d).value!,
+                    X: props.activityX.get(d).value!.toNumber(),
+                    Y: props.activityY.get(d).value!.toNumber()
+                }))
+            );
         } else {
-            setTaskEdgeList([])
+            setTaskNodeList([]);
         }
-    }, [props.outcomes, props.outcomeName, props.outcomeFrom, props.outcomeTo])
+    }, [props.activitys, props.activityName, props.activityX, props.activityY, props.attImage]);
 
     useEffect(() => {
-        if (props.schemaNodes.status === ValueStatus.Available) {
-            setTaskNodeList(props.schemaNodes.items!.map(d => ({
-                Name: props.schemaNodeName.get(d).value!,
-                Identity: props.schemaNodeKey.get(d).value!,
-                X: props.schemaNodeX.get(d).value!.toNumber(),
-                Y: props.schemaNodeY.get(d).value!.toNumber(),
-            })))
-        } else {
-            setTaskNodeList([])
+        if (props.attImage.status === ValueStatus.Available) {
+            const nodeBG = new DiamondNodeModel(props.attImage.value.uri);
+            nodeBG.setPosition(250, 108);
+            nodeBG.setLocked(true);
+            const model = new DiagramModel();
+            model.addAll(
+                nodeBG,
+                ...taskNodeList.map(d => {
+                    const activity = new DefaultNodeModel(d.Name, "rgb(192,255,0)");
+                    activity.setPosition(d.X, d.Y);
+                    return activity;
+                })
+            );
+            app.getDiagramEngine().setModel(model);
         }
-    }, [props.schemaNodes, props.schemaNodeKey, props.schemaNodeName, props.schemaNodeX, props.schemaNodeY])
-
-    console.log(taskNodeList, taskEdgeList);
-
+    }, [taskNodeList, props.attImage]);
 
     return (
         <div style={props.style} className={classNames("mxcn-react-flow", props.class)}>
