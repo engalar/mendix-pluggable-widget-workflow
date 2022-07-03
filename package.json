@@ -45,18 +45,19 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^9.11.1",
+    "@mendix/pluggable-widgets-tools": "^9.13.1",
     "@types/big.js": "^6.0.2",
     "@types/classnames": "^2.2.4",
     "@types/lodash-es": "^4.17.5",
     "@types/react": "~17.0.1",
     "@types/react-dom": "~17.0.1",
-    "@rollup/plugin-commonjs": "^22.0.0",
+    "@engalar/mendix-client": "^8.0.2",
+    "eslint-plugin-jest": "^26.5.3",
     "shx": "^0.3.4",
     "mime": "^2.6.0",
-    "rollup": "^2.75.5",
+    "rollup": "^2.75.2",
     "prettier": "^2.6.2",
-    "eslint": "^7.0.0",
+    "eslint": "^8.15.0",
     "xml2js": "^0.4.23",
     "zlib": "^1.0.5"
   }

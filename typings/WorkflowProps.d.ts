@@ -28,5 +28,5 @@ export interface WorkflowPreviewProps {
     activityName: string;
     activityX: string;
     activityY: string;
-    attImage: { type: "static"; imageUrl: string } | { type: "dynamic"; entity: string } | null;
+    attImage: { type: "static"; imageUrl: string; } | { type: "dynamic"; entity: string; } | null;
 }
